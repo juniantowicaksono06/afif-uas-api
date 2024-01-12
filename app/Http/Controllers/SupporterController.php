@@ -17,9 +17,10 @@ class SupporterController extends Controller {
     // Create Supporter
     public function create(Request $request) {
         $validator = Validator::make($request->all(), [
-            'nama'          => 'required|string',
-            'alamat'        => 'required|string',
-            'no_telpon'     => 'required|string',
+            'id_supporter'  => 'required|string|max:10',
+            'nama'          => 'required|string|max:20',
+            'alamat'        => 'required|string|max:50',
+            'no_telpon'     => 'required|string|max:15',
             'tgl_daftar'    => 'required|date:Y-m-d',
             'foto'          => 'required|mimes:png,jpg,jpeg|max:2048'
         ]);
@@ -27,16 +28,22 @@ class SupporterController extends Controller {
         if($validator->fails()) {
             return response()->
             json([
-                'status'    => 401,
+                'status'    => 400,
                 'message'   => $validator->errors()
-            ], 401);
+            ], 400);
         }
         try {
             // Upload gambar ke server
             $name = now()->timestamp.".{$request->foto->getClientOriginalName()}";
             $path = $request->file('foto')->storeAs('files', $name, 'public');
-            // Generate id_supporter
-            $id_supporter = generateRandomString(10);
+            $id_supporter = $request->id_supporter;
+            // Cek ID supporter sudah ada atau belum?
+            if(!empty($data =Supporter::where('id_supporter', $id_supporter)->first())) {
+                return response()->json([
+                    'status'=> 'NOT OK',
+                    'message' => 'ID Supporter is already used!'
+                ] ,409);
+            }
             Supporter::create([
                 'id_supporter'  => $id_supporter,
                 'foto'          => "/storage/{$path}",
@@ -99,9 +106,9 @@ class SupporterController extends Controller {
     // Laravel ngebug kalo nggak pake _method = PUT
     public function update(Request $request, $id_supporter) {
         $validator = Validator::make($request->all(), [
-            'nama'          => 'required|string',
-            'alamat'        => 'required|string',
-            'no_telpon'     => 'required|string',
+            'nama'          => 'required|string|max:20',
+            'alamat'        => 'required|string|max:50',
+            'no_telpon'     => 'required|string|max:15',
             'tgl_daftar'    => 'required|date:Y-m-d',
             'foto'          => 'sometimes|mimes:png,jpg,jpeg|max:2048'
         ]);
@@ -109,9 +116,9 @@ class SupporterController extends Controller {
         if($validator->fails()) {
             return response()->
             json([
-                'status'    => 401,
+                'status'    => 400,
                 'message'   => $validator->errors()
-            ], 401);
+            ], 400);
         }
         try {
             // Cek data apakah ada data supporter?

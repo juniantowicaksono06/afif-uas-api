@@ -11,24 +11,31 @@ class KlubSepakbolaController extends Controller
     // Create Klub sepakbola
     public function create(Request $request) {
         $validator = Validator::make($request->all(), [
-            'nama_klub'    => 'required|string',
+            'id_klub'      => 'required|string|max:10',
+            'nama_klub'    => 'required|string|max:20',
             'tgl_berdri'   => 'required|date:Y-m-d',
             'kondisi_klub' => 'required|integer',
             'kota_klub'    => 'required|string',
-            'peringkat'    => 'required|integer',
+            'peringkat'    => 'required|string|max:10',
             'harga_klub'   => 'required|integer',
         ]);
         // Validasi user input sebelum di proses
         if($validator->fails()) {
             return response()->
             json([
-                'status'    => 401,
+                'status'    => 400,
                 'message'   => $validator->errors()
-            ], 401);
+            ], 400);
         }
         try {
-            // Generate id_klub
-            $id_klub = generateRandomString(10);
+            $id_klub = $request->id_klub;
+            // Cek ID klub sudah ada atau belum?
+            if(!empty($data = KlubSepakbola::where('id_supporter', $id_klub)->first())) {
+                return response()->json([
+                    'status'=> 'NOT OK',
+                    'message' => 'ID Klub is already used!'
+                ] ,409);
+            }
             KlubSepakbola::create([
                 'id_klub'       => $id_klub,
                 'nama_klub'     => $request->nama_klub,
@@ -92,20 +99,20 @@ class KlubSepakbolaController extends Controller
     // Laravel ngebug kalo nggak pake _method = PUT
     public function update(Request $request, $id_klub) {
         $validator = Validator::make($request->all(), [
-            'nama_klub'    => 'required|string',
+            'nama_klub'    => 'required|string|max:20',
             'tgl_berdri'   => 'required|date:Y-m-d',
             'kondisi_klub' => 'required|integer',
             'kota_klub'    => 'required|string',
-            'peringkat'    => 'required|integer',
+            'peringkat'    => 'required|string|max:10',
             'harga_klub'   => 'required|integer',
         ]);
         // Validasi user input sebelum di proses
         if($validator->fails()) {
             return response()->
             json([
-                'status'    => 401,
+                'status'    => 400,
                 'message'   => $validator->errors()
-            ], 401);
+            ], 400);
         }
         try {
             $klub_sepakbola = new KlubSepakbola();

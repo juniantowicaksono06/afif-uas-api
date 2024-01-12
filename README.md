@@ -137,6 +137,7 @@ POST /supporter
 ##### Parameter Body
 ###### Pilih Form Data di Postman
 ```bash
+id_supporter=<STRING>
 nama=<STRING>
 alamat=<STRING>
 no_telpon=<NUMBER>
@@ -157,6 +158,7 @@ POST /supporter/{id_supporter}
 ##### Parameter Body
 ###### Pilih Form Data di Postman
 ```bash
+id_supporter=<STRING>
 nama=<STRING>
 alamat=<STRING>
 no_telpon=<NUMBER>
@@ -180,6 +182,7 @@ POST /klub-sepakbola
 ##### Parameter Body
 ###### Pilih Form Data di Postman
 ```bash
+id_klub=<STRING>
 nama_klub=<STRING>
 tgl_berdri=<DATE>
 kondisi_klub=<NUMBER>
@@ -201,6 +204,7 @@ POST /klub-sepakbola/{id_klub}
 ##### Parameter Klub Sepakbola
 ###### Pilih Form Data di Postman
 ```bash
+id_klub=<STRING>
 nama_klub=<STRING>
 tgl_berdri=<DATE>
 kondisi_klub=<NUMBER>
