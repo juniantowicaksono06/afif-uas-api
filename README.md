@@ -24,6 +24,10 @@ php composer-setup.php
 php -r "unlink('composer-setup.php');"
 ```
 
+Terus tambahin composer tadi ke path mu
+
+terus kalo sudah bisa clone repo ku ini pake command:
+
 ## Environment
 
 Setting dulu environemntnya cuy dengan buat file .env di project rootnya
@@ -94,10 +98,6 @@ JWT_SECRET=gImxhGuwo8ReSGgv4Kk3qxf01WqzsRd2LJHEkrXNBQclcintO7TQQ4ZDJyzUREmz
 
 JWT_ALGO=HS256
 ```
-
-Terus tambahin composer tadi ke path mu
-
-terus kalo sudah bisa clone repo ku ini pake command:
 
 ```bash
 git clone 
