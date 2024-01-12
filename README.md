@@ -33,6 +33,11 @@ terus kalo sudah bisa clone repo ku ini pake command:
 git clone https://github.com/juniantowicaksono06/afif-uas-api
 ```
 
+terus bisa install semua packagenya dengan command:
+```bash
+composer install
+```
+
 ## Environment
 
 Setting dulu environemntnya cuy dengan buat file .env di project rootnya
@@ -102,12 +107,6 @@ VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 JWT_SECRET=gImxhGuwo8ReSGgv4Kk3qxf01WqzsRd2LJHEkrXNBQclcintO7TQQ4ZDJyzUREmz
 
 JWT_ALGO=HS256
-```
-
-
-terus bisa install semua packagenya dengan command:
-```bash
-composer install
 ```
 
 ## Migration
