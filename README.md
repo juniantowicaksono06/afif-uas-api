@@ -25,8 +25,13 @@ php -r "unlink('composer-setup.php');"
 ```
 
 Terus tambahin composer tadi ke path mu
+Kalo udah bisa install git dulu di <a href="https://git-scm.com/download/win" target="_blank">sini</a>
 
 terus kalo sudah bisa clone repo ku ini pake command:
+
+```bash
+git clone https://github.com/juniantowicaksono06/afif-uas-api
+```
 
 ## Environment
 
@@ -99,9 +104,6 @@ JWT_SECRET=gImxhGuwo8ReSGgv4Kk3qxf01WqzsRd2LJHEkrXNBQclcintO7TQQ4ZDJyzUREmz
 JWT_ALGO=HS256
 ```
 
-```bash
-git clone 
-```
 
 terus bisa install semua packagenya dengan command:
 ```bash
