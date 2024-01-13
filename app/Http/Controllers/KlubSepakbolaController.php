@@ -13,7 +13,7 @@ class KlubSepakbolaController extends Controller
         $validator = Validator::make($request->all(), [
             'id_klub'      => 'required|string|max:10',
             'nama_klub'    => 'required|string|max:20',
-            'tgl_berdri'   => 'required|date:Y-m-d',
+            'tgl_berdiri'   => 'required|date:Y-m-d',
             'kondisi_klub' => 'required|integer',
             'kota_klub'    => 'required|string',
             'peringkat'    => 'required|string|max:10',
@@ -30,7 +30,7 @@ class KlubSepakbolaController extends Controller
         try {
             $id_klub = $request->id_klub;
             // Cek ID klub sudah ada atau belum?
-            if(!empty($data = KlubSepakbola::where('id_supporter', $id_klub)->first())) {
+            if(!empty($data = KlubSepakbola::where('id_klub', $id_klub)->first())) {
                 return response()->json([
                     'status'=> 'NOT OK',
                     'message' => 'ID Klub is already used!'
@@ -39,7 +39,7 @@ class KlubSepakbolaController extends Controller
             KlubSepakbola::create([
                 'id_klub'       => $id_klub,
                 'nama_klub'     => $request->nama_klub,
-                "tgl_berdri"    => $request->tgl_berdri,
+                "tgl_berdiri"    => $request->tgl_berdiri,
                 "kondisi_klub"  => $request->kondisi_klub,
                 "kota_klub"     => $request->kota_klub,
                 "peringkat"     => $request->peringkat,
@@ -100,7 +100,7 @@ class KlubSepakbolaController extends Controller
     public function update(Request $request, $id_klub) {
         $validator = Validator::make($request->all(), [
             'nama_klub'    => 'required|string|max:20',
-            'tgl_berdri'   => 'required|date:Y-m-d',
+            'tgl_berdiri'   => 'required|date:Y-m-d',
             'kondisi_klub' => 'required|integer',
             'kota_klub'    => 'required|string',
             'peringkat'    => 'required|string|max:10',
@@ -125,7 +125,7 @@ class KlubSepakbolaController extends Controller
 
             $update_data = [
                 "nama_klub"     => $request->nama_klub,
-                "tgl_berdri"    => $request->tgl_berdri,
+                "tgl_berdiri"   => $request->tgl_berdiri,
                 "kondisi_klub"  => $request->kondisi_klub,
                 "kota_klub"     => $request->kota_klub,
                 "peringkat"     => $request->peringkat,

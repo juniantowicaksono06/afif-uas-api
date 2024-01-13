@@ -11,7 +11,7 @@ class KlubSepakbola extends Model
     protected $fillable = [
         "id_klub",
         "nama_klub",
-        "tgl_berdri",
+        "tgl_berdiri",
         "kota_klub",
         "peringkat",
         "harga_klub",

@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('klub_sepakbola', function (Blueprint $table) {
             $table->char('id_klub', 10)->primary();
             $table->string('nama_klub', 20);
-            $table->date('tgl_berdri');
+            $table->date('tgl_berdiri');
             $table->integer('kondisi_klub');
             $table->string('kota_klub', 30);
             $table->char('peringkat', 10);
